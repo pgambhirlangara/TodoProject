@@ -20,8 +20,9 @@ import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { makeStyles } from "@mui/styles";
 import axios from "axios";
+import { getUser } from "../auth";
 
-const CreateTodo = ({ open, closeDialog }) => {
+const CreateTodo = ({ open, closeDialog, taskCreated }) => {
   const useStyles = makeStyles((theme) => ({
     dialogContentText: {
       display: "flex",
@@ -58,7 +59,7 @@ const CreateTodo = ({ open, closeDialog }) => {
       priority,
     };
 
-    const user = JSON.parse(localStorage.getItem('user'));
+    const user = getUser();
     axios.post("api/v1/todo/create", data, {
         headers: {
             "Authorization": `Bearer ${user.token}`
@@ -66,6 +67,7 @@ const CreateTodo = ({ open, closeDialog }) => {
     }).then((response) => {
       handleClose();
       setButtonDisabled(false);
+      taskCreated(response);
     })
     .catch((error) => {
         setButtonDisabled(false);

@@ -10,6 +10,7 @@ const registerUser = async (req, res) => {
             email: req.body.email,
             password: newPassword
         })
+        
 
         return res.status(200).json({
             message: "User Registered Succesfully",

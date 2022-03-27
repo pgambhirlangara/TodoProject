@@ -7,13 +7,12 @@ import React, { useState } from "react";
 import { makeStyles } from "@mui/styles";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useLocalStorage } from "../../../hooks/useLocalStorage";
+import { login } from "../../auth";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [buttonDisabled, setButtonDisabled] = useState(false);
-  const [user, setUser] = useLocalStorage("user", "");
   const navigate = useNavigate();
 
 const useStyles = makeStyles((theme) => ({
@@ -58,8 +57,8 @@ const useStyles = makeStyles((theme) => ({
       email,
       password
     }
-    axios.post('/user/login', data ).then((response) => {
-      setUser(response.data);
+    axios.post('api/v1/user/login', data ).then((response) => {
+      login(response.data);
       navigate('../home');
       setButtonDisabled(false);
     })

@@ -24,7 +24,7 @@ app.use(express.json());
 app.use(cors());
 app.use(express.static('../public'));
 
-app.use('/user', UserRoutes);
+app.use('/api/v1/user', UserRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server working at port ${PORT}`);

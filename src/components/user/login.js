@@ -49,6 +49,13 @@ const useStyles = makeStyles((theme) => ({
 
   const loginUser = (event) => {
     event.preventDefault();
+    const data = {
+      email,
+      password
+    }
+    axios.post('/user/login', data ).then((response) => {
+      console.log(response, "login");
+    })
   }
 
   return (
@@ -79,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
           />
         </CardContent>
         <CardActions className={classes.cardAction}>
-          <Button variant="contained" color="primary" size="small" fullWidth>Login</Button>
+          <Button variant="contained" color="primary" size="small" type="submit" fullWidth>Login</Button>
           <Link to="/signup" >Don't have an account ?</Link>
         </CardActions>
       </Card>

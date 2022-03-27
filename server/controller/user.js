@@ -26,9 +26,9 @@ const registerUser = async (req, res) => {
 // Login of User
 const loginUser = async (req, res) => {
     const email = req.body.email;
-    let User = await User.findOne({ email: email});
-    if (User) {
-        const isValidPassword = await bcrypt.compare(req.body.password, User.password);
+    let user = await User.findOne({ email: email});
+    if (user) {
+        const isValidPassword = await bcrypt.compare(req.body.password, user.password);
         if (isValidPassword) {
             const token = jwt.sign({
                 name: req.body.name,
@@ -36,9 +36,9 @@ const loginUser = async (req, res) => {
             }, process.env.JWT_SECRET)
             return res.status(200).json({
                 token,
-                id: User._id,
-                name: User.name,
-                email: User.email,
+                id: user._id,
+                name: user.name,
+                email: user.email,
                 message:"Succesfully Logged In"
             })
         } else {

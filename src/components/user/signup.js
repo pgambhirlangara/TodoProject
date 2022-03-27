@@ -6,6 +6,7 @@ import { InputLabel, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { makeStyles } from "@mui/styles";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -49,11 +50,19 @@ const Signup = () => {
 
   const signupUser = (event) => {
     event.preventDefault();
+    const data = {
+      name,
+      email,
+      password
+    }
+    axios.post('/user/register', data ).then((response) => {
+      console.log(response, "Register");
+    })
   };
 
   return (
     <div className={classes.mainContainer}>
-      <form onClick={signupUser}>
+      <form onSubmit={signupUser}>
         <Card variant="outlined" className={classes.card}>
           <h1 className={classes.title}>Todo App</h1>
           <CardContent className={classes.cardContent}>
@@ -93,6 +102,7 @@ const Signup = () => {
               color="secondary"
               size="small"
               fullWidth
+              type="submit"
             >
               Signup
             </Button>

@@ -2,8 +2,8 @@ const jwt = require('jsonwebtoken');
 const Todo = require('../models/todo');
 
 const createTodo = async (req, res) => {
+    const token = req.headers.authorization.split(' ')[1];
     const decoded = jwt.decode(token, {complete: true});
-    console.log(decoded, "decoded");
     try {
         const output = await Todo.create({
             title: req.body.title,

@@ -1,12 +1,12 @@
 import React from "react";
-import Signup from "./components/user/signup";
+import AppRoutes from "./routes";
 
 const App = () => {
 
 
   return (
     <div className="app">
-      <Signup />
+     <AppRoutes />
     </div>
   );
 };

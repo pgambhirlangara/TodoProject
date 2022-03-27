@@ -12,77 +12,94 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-const useStyles = makeStyles((theme) => ({
+  const useStyles = makeStyles((theme) => ({
     cardContent: {
-        padding: "40px 60px",
-        display: "flex",
-        justifyContent: "center",
-        flexDirection: "column",
-        gap: "10px",
+      padding: "40px 60px",
+      display: "flex",
+      justifyContent: "center",
+      flexDirection: "column",
+      gap: "10px",
     },
     mainContainer: {
-        backgroundColor: "#e2e6f1 !important",
-        height: "100%",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center"
+      backgroundColor: theme.palette.primary.main,
+      height: "100%",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
     },
     card: {
-        padding: "40px 60px"
+      padding: "40px",
+      width: 400,
     },
     cardAction: {
-        display: "flex",
-        justifyContent: "center",
-        flexDirection: "column",
-        gap: "20px"
+      display: "flex",
+      justifyContent: "center",
+      flexDirection: "column",
+      gap: "20px",
     },
     title: {
-        textAlign: "center"
-    }
-}));
+      textAlign: "center",
+    },
+    label: {
+      fontWeight: "bold !important",
+    },
+  }));
 
   const classes = useStyles();
 
+  const signupUser = (event) => {
+    event.preventDefault();
+  };
+
   return (
     <div className={classes.mainContainer}>
-      <Card variant="outlined" className={classes.card}>
-        <h1 className={classes.title}>Todo App</h1>
-        <CardContent className={classes.cardContent}>
-          <InputLabel>Name</InputLabel>
-          <TextField
-            variant="outlined"
-            placeholder="Enter Name"
-            value={name}
-            required
-            fullWidth
-            onChange={(e) => setName(e.target.value)}
-          />
-          <InputLabel>Email</InputLabel>
-          <TextField
-            type="email"
-            variant="outlined"
-            placeholder="Enter Email"
-            value={email}
-            required
-            fullWidth
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <InputLabel>Password</InputLabel>
-          <TextField
-            variant="outlined"
-            type="password"
-            placeholder="Enter Password"
-            value={password}
-            required
-            fullWidth
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </CardContent>
-        <CardActions className={classes.cardAction}>
-          <Button variant="contained" size="small" fullWidth>Signup</Button>
-          <Link to="/login">Already have an account ?</Link>
-        </CardActions>
-      </Card>
+      <form onClick={signupUser}>
+        <Card variant="outlined" className={classes.card}>
+          <h1 className={classes.title}>Todo App</h1>
+          <CardContent className={classes.cardContent}>
+            <InputLabel className={classes.label}>Name</InputLabel>
+            <TextField
+              variant="outlined"
+              placeholder="Enter Name"
+              value={name}
+              required
+              fullWidth
+              onChange={(e) => setName(e.target.value)}
+            />
+            <InputLabel className={classes.label}>Email</InputLabel>
+            <TextField
+              type="email"
+              variant="outlined"
+              placeholder="Enter Email"
+              value={email}
+              required
+              fullWidth
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <InputLabel className={classes.label}>Password</InputLabel>
+            <TextField
+              variant="outlined"
+              type="password"
+              placeholder="Enter Password"
+              value={password}
+              required
+              fullWidth
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </CardContent>
+          <CardActions className={classes.cardAction}>
+            <Button
+              variant="contained"
+              color="secondary"
+              size="small"
+              fullWidth
+            >
+              Signup
+            </Button>
+            <Link to="/login">Already have an account ?</Link>
+          </CardActions>
+        </Card>
+      </form>
     </div>
   );
 };

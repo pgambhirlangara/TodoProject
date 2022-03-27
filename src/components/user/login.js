@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import { InputLabel, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { makeStyles } from "@mui/styles";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useLocalStorage } from "../../../hooks/useLocalStorage";
 
@@ -14,6 +14,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [user, setUser] = useLocalStorage("user", "");
+  const navigate = useNavigate();
 
 const useStyles = makeStyles((theme) => ({
     cardContent: {
@@ -59,6 +60,7 @@ const useStyles = makeStyles((theme) => ({
     }
     axios.post('/user/login', data ).then((response) => {
       setUser(response.data);
+      navigate('../home');
       setButtonDisabled(false);
     })
   }

@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import { InputLabel, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { makeStyles } from "@mui/styles";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Signup = () => {
@@ -13,6 +13,7 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [buttonDisabled, setButtonDisabled] = useState(false);
+  const navigate = useNavigate();
 
 
   const useStyles = makeStyles((theme) => ({
@@ -60,6 +61,7 @@ const Signup = () => {
     }
     axios.post('/user/register', data ).then((response) => {
       setButtonDisabled(false);
+      navigate('../login');
     }).catch((error) => {
       setButtonDisabled(false);
     })

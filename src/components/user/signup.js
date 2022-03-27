@@ -12,6 +12,8 @@ const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+
 
   const useStyles = makeStyles((theme) => ({
     cardContent: {
@@ -50,13 +52,16 @@ const Signup = () => {
 
   const signupUser = (event) => {
     event.preventDefault();
+    setButtonDisabled(true);
     const data = {
       name,
       email,
       password
     }
     axios.post('/user/register', data ).then((response) => {
-      console.log(response, "Register");
+      setButtonDisabled(false);
+    }).catch((error) => {
+      setButtonDisabled(false);
     })
   };
 
@@ -103,6 +108,7 @@ const Signup = () => {
               size="small"
               fullWidth
               type="submit"
+              disabled={buttonDisabled}
             >
               Signup
             </Button>

@@ -7,10 +7,13 @@ import React, { useState } from "react";
 import { makeStyles } from "@mui/styles";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useLocalStorage } from "../../../hooks/useLocalStorage";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [user, setUser] = useLocalStorage("user", "");
 
 const useStyles = makeStyles((theme) => ({
     cardContent: {
@@ -49,12 +52,14 @@ const useStyles = makeStyles((theme) => ({
 
   const loginUser = (event) => {
     event.preventDefault();
+    setButtonDisabled(true);
     const data = {
       email,
       password
     }
     axios.post('/user/login', data ).then((response) => {
-      console.log(response, "login");
+      setUser(response.data);
+      setButtonDisabled(false);
     })
   }
 
@@ -86,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
           />
         </CardContent>
         <CardActions className={classes.cardAction}>
-          <Button variant="contained" color="primary" size="small" type="submit" fullWidth>Login</Button>
+          <Button disabled={buttonDisabled}  variant="contained" color="primary" size="small" type="submit" fullWidth>Login</Button>
           <Link to="/signup" >Don't have an account ?</Link>
         </CardActions>
       </Card>

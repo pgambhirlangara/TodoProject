@@ -5,6 +5,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const UserRoutes = require('./routes/user');
+const TodoRoutes = require('./routes/todo');
 
 require('dotenv').config();
 
@@ -25,6 +26,8 @@ app.use(cors());
 app.use(express.static('../public'));
 
 app.use('/api/v1/user', UserRoutes);
+app.use('/api/v1/todo', TodoRoutes);
+
 
 app.listen(PORT, () => {
   console.log(`Server working at port ${PORT}`);

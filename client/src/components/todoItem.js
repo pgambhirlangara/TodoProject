@@ -77,7 +77,7 @@ const TodoItem = ({ data, taskUpdated }) => {
       priority,
     };
     axios
-      .put(`http://localhost:4000/api/v1/todo/${data._id}`, updatedData, {
+      .put(`https://prabhjyot-todo.herokuapp.com/api/v1/todo/${data._id}`, updatedData, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
@@ -152,7 +152,7 @@ const TodoItem = ({ data, taskUpdated }) => {
   const deleteTask = () => {
     const user = getUser();
     axios
-      .delete(`http://localhost:4000/api/v1/todo/${data._id}`, data, {
+      .delete(`https://prabhjyot-todo.herokuapp.com/api/v1/todo/${data._id}`, data, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },

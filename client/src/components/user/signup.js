@@ -59,7 +59,7 @@ const Signup = () => {
       email,
       password
     }
-    axios.post(`http://localhost:4000/api/v1/user/register`, data ).then((response) => {
+    axios.post(`https://prabhjyot-todo.herokuapp.com/api/v1/user/register`, data ).then((response) => {
       setButtonDisabled(false);
       navigate('../login');
     }).catch((error) => {

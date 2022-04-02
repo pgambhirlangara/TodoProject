@@ -15,6 +15,7 @@ const Header = ({ isLoggedIn }) => {
     const navigate = useNavigate();
     const logoutUser = () => {
         logout();
+        window.location.reload();
     }
 
 

@@ -6,10 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "webpack --watch",
-    "start": "react-app-env --env-file=./config/development.env start",
-    "start:prod": "react-app-env --env-file=../config/production.env start",
-    "build": "react-app-env --env-file=./config/production.env build",
-    "build:prod": "react-app-env npm run build"
+    "start": "node app.js"
   },
   "author": "",
   "license": "ISC",

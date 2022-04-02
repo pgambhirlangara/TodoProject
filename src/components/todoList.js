@@ -34,7 +34,7 @@ const TodoList = ({ taskCreated }) => {
   useEffect(() => {
     const user = getUser();
     axios
-      .get(`${process.env.REACT_APP_API_URL}/api/v1/todo`, {
+      .get(`http://localhost:4000/api/v1/todo`, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },

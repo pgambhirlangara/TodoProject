@@ -59,7 +59,7 @@ const CreateTodo = ({ open, closeDialog, taskCreated }) => {
     };
 
     const user = getUser();
-    axios.post(`${process.env.REACT_APP_API_URL}/api/v1/todo/create`, data, {
+    axios.post(`http://localhost:4000/api/v1/todo/create`, data, {
         headers: {
             "Authorization": `Bearer ${user.token}`
         }

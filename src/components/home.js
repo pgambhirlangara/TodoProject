@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import { makeStyles } from "@mui/styles";
-import { Fab, Slide } from "@mui/material";
+import { Alert, Fab, Slide, Snackbar } from "@mui/material";
 import CreateTodo from "./createTodo";
 import TodoList from "./todoList";
+import { getUser } from "../auth";
+import axios from "axios";
 
 const Home = () => {
   const useStyles = makeStyles((theme) => ({
@@ -20,7 +22,11 @@ const Home = () => {
   };
 
   const [open, setOpen] = useState(false);
-  const [taskCreated, setTaskCreated] = useState();
+  const [taskUpdated, setTaskUpdated] = useState();
+  const [openSnackBar, setOpenSnackBar] = useState(false);
+  const [severity, setSeverity] = useState("success");
+  const [message, setMessage] = useState("");
+  const [todoData, setTodos] = useState([]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -30,10 +36,57 @@ const Home = () => {
     setOpen(false);
   };
 
+  useEffect(() => {
+    
+    setMessage(taskUpdated   ? taskUpdated.data.message : "");
+    setSeverity("success");
+    setOpenSnackBar(taskUpdated  ? true : false);
+    const user = getUser();
+    axios
+      .get(`http://localhost:4000/api/v1/todo`, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      })
+      .then((response) => {
+        setTodos(response.data.data);
+        setOpenSnackBar(false);
+      })
+      .catch((error) => {});
+
+  }, [taskUpdated])
+
+  const anchorOrigin = {
+    vertical: "bottom",
+    horizontal: "center",
+  };
+
+  const handleAlertClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
   return (
     <div>
+            <Snackbar
+        anchorOrigin={anchorOrigin}
+        open={openSnackBar}
+        autoHideDuration={3000}
+        onClose={handleAlertClose}
+      >
+        <Alert
+          className={classes.snackbar}
+          onClose={handleAlertClose}
+          severity={severity}
+        >
+          {message}
+        </Alert>
+      </Snackbar>
       <div className={classes.todoList}>
-        <TodoList taskCreated={taskCreated} />
+        <TodoList todoData={todoData} taskUpdate={(val) => setTaskUpdated(val)} />
       </div>
       <Fab
         sx={fabStyle}
@@ -45,7 +98,7 @@ const Home = () => {
       </Fab>
 
       <CreateTodo
-        taskCreated={(value) => setTaskCreated(value)}
+        taskCreated={(value) => setTaskUpdated(value)}
         open={open}
         closeDialog={handleClose}
       />

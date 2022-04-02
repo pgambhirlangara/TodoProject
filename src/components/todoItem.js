@@ -151,7 +151,6 @@ const TodoItem = ({ data, taskUpdated }) => {
 
   const deleteTask = () => {
     const user = getUser();
-    console.log(user, "USER");
     axios
       .delete(`http://localhost:4000/api/v1/todo/${data._id}`, {
         headers: {
@@ -159,11 +158,13 @@ const TodoItem = ({ data, taskUpdated }) => {
         },
       })
       .then((response) => {
+        console.log(response, "Response");
         taskUpdated(response);
         setButtonDisabled(false);
       })
       .catch((error) => {
         setButtonDisabled(false);
+        taskUpdated(error.response);
       });
   };
 

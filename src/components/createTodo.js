@@ -65,7 +65,9 @@ const CreateTodo = ({ open, closeDialog, taskCreated }) => {
         }
     }).then((response) => {
       setButtonDisabled(false);
-      taskCreated(response);
+      setTimeout(() => {
+        taskCreated(response);
+      }, 1000);
       handleClose();
     })
     .catch((error) => {

@@ -1,12 +1,11 @@
-import { Grid } from "@mui/material";
+import { Alert, Grid, Snackbar } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { getUser } from "../auth";
 import TodoItem from "./todoItem";
 
-const TodoList = ({ taskCreated }) => {
-  const [todoData, setTodos] = useState([]);
+const TodoList = ({ todoData, taskUpdate }) => {
   const [taskUpdated, setTaskUpaded] = useState();
 
   const useStyles = makeStyles(() => ({
@@ -28,25 +27,18 @@ const TodoList = ({ taskCreated }) => {
     }
   }));
 
+  useEffect(() => {
+    setTimeout(() => {
+      taskUpdate(taskUpdated);
+    }, 1000)
+  }, [taskUpdated])
 
   const classes = useStyles();
 
-  useEffect(() => {
-    const user = getUser();
-    axios
-      .get(`http://localhost:4000/api/v1/todo`, {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      })
-      .then((response) => {
-        setTodos(response.data.data);
-      })
-      .catch((error) => {});
-  }, [taskCreated, taskUpdated]);
 
   return (
     <Grid container spacing={2} className={classes.container}>
+
       {todoData.length > 0 ? (
         todoData.map((data) => {
           return (
@@ -60,8 +52,8 @@ const TodoList = ({ taskCreated }) => {
         })
       ) : (
         <div className={classes.noTasks}>
-            <h3>No Task added yet!</h3>
-            <img className={classes.image} src="/assets/arrow.png" alt="Notask" />
+          <h3>No Task added yet!</h3>
+          <img className={classes.image} src="/assets/arrow.png" alt="Notask" />
         </div>
       )}
     </Grid>

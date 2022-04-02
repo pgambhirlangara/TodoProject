@@ -9,9 +9,8 @@ const AppRoutes = () => {
   return (
     <Routes>
       {
-        isLogin() ? <Route path="/" red element={<Home />} /> : <Route path="/" element={<Login />} />
+        isLogin() ? <Route path="/" element={<Home />} /> : <Route path="/" element={<Login />} />
       }
-      <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/home" element={<Home />} />
     </Routes>

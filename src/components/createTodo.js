@@ -39,7 +39,6 @@ const CreateTodo = ({ open, closeDialog, taskCreated }) => {
   const [description, setDescription] = useState("");
   const [completionDate, setCompletionDate] = useState("");
   const [priority, setPriority] = useState("");
-  const [alignment, setAlignment] = useState("left");
   const [buttonDisabled, setButtonDisabled] = useState(false);
 
   const togglePriority = (event, newAlignment) => {
@@ -78,7 +77,7 @@ const CreateTodo = ({ open, closeDialog, taskCreated }) => {
   return (
     <Dialog open={open} keepMounted maxWidth="md" onClose={handleClose}>
       <DialogTitle>Create a Task</DialogTitle>
-      <DialogContent>
+      <DialogContent style={{ width: "500px"}}>
         <DialogContentText className={classes.dialogContentText}>
           <InputLabel className={classes.label}>Task Name</InputLabel>
           <TextField
@@ -115,7 +114,7 @@ const CreateTodo = ({ open, closeDialog, taskCreated }) => {
 
           <InputLabel className={classes.label}>Priority</InputLabel>
           <ToggleButtonGroup
-            value={alignment}
+            value={priority}
             exclusive
             onChange={togglePriority}
             aria-label="text alignment"

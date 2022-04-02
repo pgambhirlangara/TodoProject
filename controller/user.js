@@ -33,7 +33,8 @@ const loginUser = async (req, res) => {
         if (isValidPassword) {
             const token = jwt.sign({
                 name: req.body.name,
-                email: req.body.email
+                email: req.body.email,
+                id: user._id
             }, process.env.JWT_SECRET)
             return res.status(200).json({
                 token,

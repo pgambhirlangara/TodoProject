@@ -77,6 +77,9 @@ const Signup = () => {
         }, 1500);
       })
       .catch((error) => {
+        setSeverity("error");
+        setOpen(true);
+        setMessage(error.response.data.message);
         setButtonDisabled(false);
       });
   };
@@ -163,7 +166,7 @@ const Signup = () => {
               ) : null}{" "}
               Signup
             </Button>
-            <Link to="/login">Already have an account ?</Link>
+            <Link to="/">Already have an account ?</Link>
           </CardActions>
         </Card>
       </form>

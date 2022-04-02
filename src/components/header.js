@@ -1,33 +1,30 @@
-import {
-  AppBar,
-  Box,
-  Button,
-  Toolbar,
-  Typography,
-} from "@mui/material";
+import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { logout } from "../auth";
-
+import { getUser, logout } from "../auth";
 
 const Header = ({ isLoggedIn }) => {
-
-    const navigate = useNavigate();
-    const logoutUser = () => {
-        logout();
-        window.location.reload();
-    }
-
-
+  const navigate = useNavigate();
+  const user = getUser();
+  const logoutUser = () => {
+    logout();
+    window.location.reload();
+  };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Todo Application
-          </Typography>
-          {isLoggedIn ? <Button variant="contained" onClick={logoutUser}>Logout</Button> : null}
+          {isLoggedIn ? (
+            <>
+              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                Hi, {user.name}
+              </Typography>{" "}
+              <Button variant="contained" onClick={logoutUser}>
+                Logout
+              </Button>{" "}
+            </>
+          ) : null}
         </Toolbar>
       </AppBar>
     </Box>

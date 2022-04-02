@@ -64,9 +64,9 @@ const CreateTodo = ({ open, closeDialog, taskCreated }) => {
             "Authorization": `Bearer ${user.token}`
         }
     }).then((response) => {
-      handleClose();
       setButtonDisabled(false);
       taskCreated(response);
+      handleClose();
     })
     .catch((error) => {
         setButtonDisabled(false);

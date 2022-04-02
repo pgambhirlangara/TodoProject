@@ -152,7 +152,7 @@ const TodoItem = ({ data, taskUpdated }) => {
   const deleteTask = () => {
     const user = getUser();
     axios
-      .delete(`api/v1/todo/${data._id}`, data, {
+      .delete(`${process.env.REACT_APP_API_URL}/api/v1/todo/${data._id}`, data, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },

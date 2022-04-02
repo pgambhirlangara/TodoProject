@@ -14,7 +14,7 @@ import { isLogin } from "./auth";
 import Header from "./components/header";
 import AppRoutes from "./routes";
 import { styled } from "@mui/material/styles";
-import { ColorModeContext } from "../context/Color";
+import { ColorModeContext } from "./context/Color";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

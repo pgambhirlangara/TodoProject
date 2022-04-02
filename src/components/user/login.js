@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
       email,
       password
     }
-    axios.post('api/v1/user/login', data ).then((response) => {
+    axios.post(`${process.env.REACT_APP_API_URL}/api/v1/user/login`, data ).then((response) => {
       login(response.data);
       navigate('../home');
       setButtonDisabled(false);

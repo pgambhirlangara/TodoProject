@@ -59,7 +59,7 @@ const Signup = () => {
       email,
       password
     }
-    axios.post('/api/v1/user/register', data ).then((response) => {
+    axios.post(`${process.env.REACT_APP_API_URL}/api/v1/user/register`, data ).then((response) => {
       setButtonDisabled(false);
       navigate('../login');
     }).catch((error) => {

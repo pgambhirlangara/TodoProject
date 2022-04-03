@@ -28,7 +28,7 @@ const Login = () => {
       gap: "10px",
     },
     mainContainer: {
-      backgroundColor: theme.palette.primary.main,
+      backgroundColor: theme.palette.secondary.main,
       height: "100%",
       display: "flex",
       justifyContent: "center",
@@ -52,6 +52,7 @@ const Login = () => {
     },
     button: {
       width: "200px",
+      background: `${theme.palette.secondary.main} !important`
     },
   }));
 
@@ -142,7 +143,6 @@ const Login = () => {
             <Button
               disabled={buttonDisabled}
               variant="contained"
-              color="primary"
               size="small"
               type="submit"
               className={classes.button}

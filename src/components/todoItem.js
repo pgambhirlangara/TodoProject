@@ -45,7 +45,7 @@ const TodoItem = ({ data, taskUpdated }) => {
     updateButton: {
         width: "50%",
         margin: "auto"
-    }
+    },
   }));
   const classes = useStyles();
 
@@ -175,17 +175,15 @@ const TodoItem = ({ data, taskUpdated }) => {
           <div className={classes.buttonContainer}>
             <Fab
               sx={fabStyle}
-              aria-label="Add"
-              color="secondary"
               onClick={editTask}
+              color="secondary"
             >
               { !editMode ? <EditIcon /> : <CloseIcon />}
             </Fab>
             <Fab
               sx={fabStyle}
-              aria-label="Add"
-              color="warning"
               onClick={deleteTask}
+              color="warning"
             >
               <DeleteIcon />
             </Fab>

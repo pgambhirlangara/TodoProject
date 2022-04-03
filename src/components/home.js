@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import { makeStyles } from "@mui/styles";
-import { Alert, Fab, Slide, Snackbar } from "@mui/material";
+import { Alert, Fab, LinearProgress, Slide, Snackbar } from "@mui/material";
 import CreateTodo from "./createTodo";
 import TodoList from "./todoList";
 import { getUser } from "../auth";
@@ -27,6 +27,7 @@ const Home = () => {
   const [severity, setSeverity] = useState("success");
   const [message, setMessage] = useState("");
   const [todoData, setTodos] = useState([]);
+  const [showLoading, setShowLoading] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -37,10 +38,10 @@ const Home = () => {
   };
 
   useEffect(() => {
-    
-    setMessage(taskUpdated   ? taskUpdated.data.message : "");
+    setShowLoading(true);
+    setMessage(taskUpdated ? taskUpdated.data.message : "");
     setSeverity("success");
-    setOpenSnackBar(taskUpdated  ? true : false);
+    setOpenSnackBar(taskUpdated ? true : false);
     const user = getUser();
     axios
       .get(`http://localhost:4000/api/v1/todo`, {
@@ -50,11 +51,15 @@ const Home = () => {
       })
       .then((response) => {
         setTodos(response.data.data);
+        setShowLoading(false);
         setOpenSnackBar(false);
       })
-      .catch((error) => {});
-
-  }, [taskUpdated])
+      .catch((error) => {
+        setShowLoading(false);
+        setTodos([]);
+        setOpenSnackBar(false);
+      });
+  }, [taskUpdated]);
 
   const anchorOrigin = {
     vertical: "bottom",
@@ -71,7 +76,12 @@ const Home = () => {
 
   return (
     <div>
-            <Snackbar
+      {
+        showLoading ? 
+        <LinearProgress color="primary" /> : null
+      }
+
+      <Snackbar
         anchorOrigin={anchorOrigin}
         open={openSnackBar}
         autoHideDuration={3000}
@@ -86,12 +96,15 @@ const Home = () => {
         </Alert>
       </Snackbar>
       <div className={classes.todoList}>
-        <TodoList todoData={todoData} taskUpdate={(val) => setTaskUpdated(val)} />
+        <TodoList
+          todoData={todoData}
+          taskUpdate={(val) => setTaskUpdated(val)}
+        />
       </div>
       <Fab
         sx={fabStyle}
         aria-label="Add"
-        color="secondary"
+        color="primary"
         onClick={handleClickOpen}
       >
         <AddIcon />

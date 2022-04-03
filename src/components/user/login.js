@@ -52,7 +52,6 @@ const Login = () => {
     },
     button: {
       width: "200px",
-      background: `${theme.palette.secondary.main} !important`
     },
   }));
 
@@ -145,10 +144,11 @@ const Login = () => {
               variant="contained"
               size="small"
               type="submit"
+              color="warning"
               className={classes.button}
             >
               {buttonDisabled ? (
-                <CircularProgress
+                <CircularProgress 
                   size="1.5rem"
                   style={{ marginRight: "8px" }}
                   color="primary"

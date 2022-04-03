@@ -28,7 +28,7 @@ const Signup = () => {
       gap: "10px",
     },
     mainContainer: {
-      backgroundColor: theme.palette.primary.main,
+      backgroundColor: theme.palette.secondary.main,
       height: "100%",
       display: "flex",
       justifyContent: "center",
@@ -151,7 +151,7 @@ const Signup = () => {
           <CardActions className={classes.cardAction}>
             <Button
               variant="contained"
-              color="secondary"
+              color="warning"
               size="small"
               type="submit"
               className={classes.button}

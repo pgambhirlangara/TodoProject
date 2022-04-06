@@ -1,8 +1,12 @@
-# Login
+# API DOCUMENTATION #################
+
+# USER -------------------------------------------------------
+
+# SIGNUP
 
 Used to collect a Token for a registered User.
 
-**URL** : `/api/v1/user`
+**URL** : `/api/v1/user/register`
 
 **Method** : `POST`
 
@@ -12,7 +16,8 @@ Used to collect a Token for a registered User.
 
 ```json
 {
-    "username": "[valid email address]",
+    "name": "[valid name]",
+    "email": "[valid email address]",
     "password": "[password in plain text]"
 }
 ```
@@ -21,7 +26,8 @@ Used to collect a Token for a registered User.
 
 ```json
 {
-    "username": "johndoe@gmail.com",
+    "name": "John Doe",
+    "email": "johndoe@gmail.com",
     "password": "1234"
 }
 ```
@@ -43,8 +49,6 @@ Used to collect a Token for a registered User.
 
 ## Error Response
 
-**Condition** : If 'username' and 'password' combination is wrong.
-
 **Code** : `400 BAD REQUEST`
 
 **Content** :
@@ -53,6 +57,351 @@ Used to collect a Token for a registered User.
 {
     "non_field_errors": [
         "Unable to login with provided credentials."
+    ]
+}
+```
+
+# LOGIN
+
+Used to collect a Token for a registered User.
+
+**URL** : `/api/v1/user`
+
+**Method** : `POST`
+
+**Auth required** : NO
+
+**Data constraints**
+
+```json
+{
+    "email": "[valid email address]",
+    "password": "[password in plain text]"
+}
+```
+
+**Data example**
+
+```json
+{
+    "email": "johndoe@gmail.com",
+    "password": "1234"
+}
+```
+
+## Success Response
+
+**Code** : `200 OK`
+
+**Content example**
+
+```json
+{
+    "token": "93144b288eb1fdccbe46d6fc0f241a51766ecd3d",
+    "email": "johndoe@gmail.com"
+}
+```
+
+## Error Response
+
+**Code** : `401 BAD REQUEST`
+
+**Content** :
+
+```json
+{
+    "non_field_errors": [
+        "Unauthorized user"
+    ]
+}
+```
+
+
+# LOGIN
+
+Used to collect a Token for a registered User.
+
+**URL** : `/api/v1/user`
+
+**Method** : `POST`
+
+**Auth required** : NO
+
+**Data constraints**
+
+```json
+{
+    "email": "[valid email address]",
+    "password": "[password in plain text]"
+}
+```
+
+**Data example**
+
+```json
+{
+    "email": "johndoe@gmail.com",
+    "password": "1234"
+}
+```
+
+## Success Response
+
+**Code** : `200 OK`
+
+**Content example**
+
+```json
+{
+    "token": "93144b288eb1fdccbe46d6fc0f241a51766ecd3d",
+    "email": "johndoe@gmail.com"
+}
+```
+
+## Error Response
+
+**Code** : `401 BAD REQUEST`
+
+**Content** :
+
+```json
+{
+    "non_field_errors": [
+        "Unauthorized user"
+    ]
+}
+```
+
+
+# GET USERS
+
+**URL** : `/api/v1/user`
+
+**Method** : `GET`
+
+**Auth required** : NO
+
+## Success Response
+
+**Code** : `200 OK`
+
+**Content example**
+
+```json
+[
+    {
+    "email": "johndoe@gmail.com",
+    "name" : "John Doe",
+    }
+]
+```
+
+## Error Response
+
+**Code** : `401 BAD REQUEST`
+
+**Content** :
+
+```json
+{
+    "non_field_errors": [
+        "You are not authorized"
+    ]
+}
+```
+
+
+# PUT USERS
+
+**URL** : `/api/v1/user`
+
+**Method** : `PUT`
+
+**Auth required** : NO
+
+**Data example**
+```json
+    {
+    "email": "johndoe@gmail.com",
+    "name" : "John Doe",
+    }
+```
+
+## Success Response
+
+**Code** : `200 OK`
+
+**Content example**
+
+```json
+    {
+        "data" : {
+            "email": "johndoe@gmail.com",
+            "name" : "John Doe",
+        }, 
+        "message": "Succesfully Updated"
+    }
+```
+
+## Error Response
+
+**Code** : `401 BAD REQUEST`
+
+**Content** :
+
+```json
+{
+    "non_field_errors": [
+        "You are not authorized"
+    ]
+}
+```
+
+
+# TODO -------------------------------------------------------
+
+
+
+# GET TODOS
+
+**URL** : `/api/v1/todo`
+
+**Method** : `GET`
+
+**Auth required** : YES
+
+## Success Response
+
+**Code** : `200 OK`
+
+**Content example**
+
+```json
+[
+    {
+    "title": "Complete task 1",
+    "description" : "Task 1 Description",
+    "priority": "High",
+    "completionDate": "22/04/2022"
+    }
+]
+```
+
+## Error Response
+
+**Code** : `401 BAD REQUEST`
+
+**Content** :
+
+```json
+{
+    "non_field_errors": [
+        "You are not authorized"
+    ]
+}
+```
+
+
+# CREATE TODO
+
+**URL** : `/api/v1/todo`
+
+**Method** : `POST`
+
+**Auth required** : YES
+
+## Success Response
+
+**Code** : `201 OK`
+
+**Content example**
+
+```json
+    {
+    "title": "Complete task 1",
+    "description" : "Task 1 Description",
+    "priority": "High",
+    "completionDate": "22/04/2022"
+    }
+```
+
+## Error Response
+
+**Code** : `401 BAD REQUEST`
+
+**Content** :
+
+```json
+{
+    "non_field_errors": [
+        "You are not authorized"
+    ]
+}
+```
+
+
+# PUT TODO
+
+**URL** : `/api/v1/todo/:id`
+
+**Method** : `PUT`
+
+**Auth required** : YES
+
+## Success Response
+
+**Code** : `200 OK`
+
+**Content example**
+
+```json
+    {
+    "title": "Complete task 1",
+    "description" : "Task 1 Description",
+    "priority": "High",
+    "completionDate": "22/04/2022"
+    }
+```
+
+## Error Response
+
+**Code** : `401 BAD REQUEST`
+
+**Content** :
+
+```json
+{
+    "non_field_errors": [
+        "You are not authorized"
+    ]
+}
+```
+
+
+# DELETE TODOS
+
+**URL** : `/api/v1/todo/:id`
+
+**Method** : `GET`
+
+**Auth required** : YES
+
+## Success Response
+
+**Code** : `200 OK`
+
+**Content example**
+
+## Error Response
+
+**Code** : `401 BAD REQUEST`
+
+**Content** :
+
+```json
+{
+    "non_field_errors": [
+        "You are not authorized"
     ]
 }
 ```

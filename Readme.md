@@ -1,5 +1,27 @@
 # API DOCUMENTATION #################
 
+
+
+PROJECT LINK - https://prabhjyot-todo.herokuapp.com/
+
+
+
+# HOW TO RUN THE PROJECT (DEVELOPMENT)
+
+**STEPS** 
+1. Run npm run watch - to run the client version of the app
+2. Run npm start - Run backend version of the app
+
+
+**DESCRIPTION**
+This is an easy to use TODO application for the project, you can create your daily tasks based on your schedule
+
+
+**FEATURE THAT I AM PROUD OF**
+Show staggered layout with sleak design, easy to use 
+
+
+
 # USER -------------------------------------------------------
 
 # SIGNUP

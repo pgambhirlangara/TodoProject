@@ -21,6 +21,7 @@ import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import CloseIcon from '@mui/icons-material/Close';
+import { Box } from "@mui/system";
 
 const TodoItem = ({ data, taskUpdated }) => {
   const useStyles = makeStyles((theme) => ({
@@ -142,9 +143,11 @@ const TodoItem = ({ data, taskUpdated }) => {
             <span>Low</span>
           </ToggleButton>
         </ToggleButtonGroup>
+        <Box display="flex" justifyContent="flex-end">
         <Button className={classes.updateButton} variant="contained" disabled={buttonDisabled} color="primary" onClick={updateTask}>
           Update
         </Button>
+        </Box>
       </>
     );
   };

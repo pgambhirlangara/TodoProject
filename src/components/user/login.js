@@ -2,12 +2,19 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
-import { Alert, CircularProgress, InputLabel, Snackbar, TextField } from "@mui/material";
+import {
+  Alert,
+  CircularProgress,
+  InputLabel,
+  Snackbar,
+  TextField,
+} from "@mui/material";
 import React, { useState } from "react";
 import { makeStyles } from "@mui/styles";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { login } from "../../auth";
+import GoogleLogin from "react-google-login";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -97,6 +104,7 @@ const Login = () => {
     horizontal: "center",
   };
 
+
   return (
     <div className={classes.mainContainer}>
       <Snackbar
@@ -148,7 +156,7 @@ const Login = () => {
               className={classes.button}
             >
               {buttonDisabled ? (
-                <CircularProgress 
+                <CircularProgress
                   size="1.5rem"
                   style={{ marginRight: "8px" }}
                   color="primary"
@@ -157,6 +165,7 @@ const Login = () => {
               Login
             </Button>
 
+  
             <Link to="/signup">Don't have an account ?</Link>
           </CardActions>
         </Card>

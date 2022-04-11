@@ -78,7 +78,7 @@ const TodoItem = ({ data, taskUpdated }) => {
       priority,
     };
     axios
-      .put(`/api/v1/todo/${data._id}`, updatedData, {
+      .put(`https://prabhjyot-todo.herokuapp.com/api/v1/todo/${data._id}`, updatedData, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },

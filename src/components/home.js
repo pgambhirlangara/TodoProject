@@ -44,7 +44,7 @@ const Home = () => {
     setOpenSnackBar(taskUpdated ? true : false);
     const user = getUser();
     axios
-      .get(`https://prabhjyot-todo.herokuapp.com/api/v1/todo`, {
+      .get(`/api/v1/todo`, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },

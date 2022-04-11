@@ -59,7 +59,7 @@ const CreateTodo = ({ open, closeDialog, taskCreated }) => {
     };
 
     const user = getUser();
-    axios.post(`https://prabhjyot-todo.herokuapp.com/api/v1/todo/create`, data, {
+    axios.post(`/api/v1/todo/create`, data, {
         headers: {
             "Authorization": `Bearer ${user.token}`
         }

@@ -66,7 +66,7 @@ const Signup = () => {
       password,
     };
     axios
-      .post(`https://prabhjyot-todo.herokuapp.com/api/v1/user/register`, data)
+      .post(`/api/v1/user/register`, data)
       .then((response) => {
         setMessage(response.data.message);
         setSeverity("success");

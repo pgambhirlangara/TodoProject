@@ -78,7 +78,7 @@ const TodoItem = ({ data, taskUpdated }) => {
       priority,
     };
     axios
-      .put(`http://localhost:4000/api/v1/todo/${data._id}`, updatedData, {
+      .put(`/api/v1/todo/${data._id}`, updatedData, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },

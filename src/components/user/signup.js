@@ -66,7 +66,7 @@ const Signup = () => {
       password,
     };
     axios
-      .post(`http://localhost:4000/api/v1/user/register`, data)
+      .post(`/api/v1/user/register`, data)
       .then((response) => {
         setMessage(response.data.message);
         setSeverity("success");
